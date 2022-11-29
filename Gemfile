@@ -12,6 +12,8 @@ gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
+gem 'active_model_serializers'
+
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 # Use the Puma web server [https://github.com/puma/puma]
