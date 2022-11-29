@@ -1,5 +1,6 @@
 class RestaurantPizzaController < ApplicationController
 
+
     def create
         restaurant = Restaurant.create(restaurant_params)
         if restaurant
@@ -11,7 +12,7 @@ class RestaurantPizzaController < ApplicationController
         private
 
         def restaurant_params
-        params.permit(:price, :pizza_id, :restaurant_id)
+        params.permit(:restaurant_id, :pizza_id, :price)
         end
     end
 end
