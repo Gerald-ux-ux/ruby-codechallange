@@ -1,18 +1,18 @@
 class RestaurantPizzaController < ApplicationController
+rescue_from ActiveRecord:: RecordInvalid, with: :unprocessable_entity_method
+  
+  def create
+    restaurant_pizza = RestaurantPizza.create!(restaurant_pizza_params)
+    render json: restaurant_pizza, status: :created
+  end
 
+  private
 
-    def create
-        restaurant = Restaurant.create(restaurant_params)
-        if restaurant
-            render json: restaurant, status: :created
-        else
-            render json: {error: "validation errors"}
-        end
+  def restaurant_pizza_params
+    params.permit(:restaurant_id, :pizza_id, :price)
+  end
 
-        private
-
-        def restaurant_params
-        params.permit(:restaurant_id, :pizza_id, :price)
-        end
-    end
+  def unprocessable_entity_method(exception)
+    render json: {errors: exception.record.errors}, status: :unprocessable_entity
+  end
 end
